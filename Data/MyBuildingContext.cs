@@ -15,5 +15,7 @@ namespace Backend.Data
 
         public DbSet<Usuario> Usuarios { get; set; }
 
+        public DbSet<Building> Building { get; set; }
+
     }
 }

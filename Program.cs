@@ -3,6 +3,7 @@ using Backend.Repository;
 using Backend.Repository.Interface;
 using Backend.Service;
 using Backend.Service.Interface;
+using Backend.Service.LogicaController;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -24,26 +25,32 @@ builder.Services.AddDbContext<MyBuildingContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
 );
 
-//Criptografia
+// Criptografia
 builder.Services.AddScoped<IPasswordHasher, Argon2PAsswordHasher>();
 
-//Service
+// Services (usuário)
 builder.Services.AddScoped<IVerificarEmail, VerificarEmail>();
 builder.Services.AddScoped<IExisteUsuario, ExisteUsuario>();
-builder.Services.AddScoped<UserRepository>();
 
-
-//repositorio do usuario
-builder.Services.AddScoped<IExisteUsuario, ExisteUsuario>(); 
+// Repositórios (usuário)
 builder.Services.AddScoped<ICreateUser, UserRepository>();
 builder.Services.AddScoped<IGetbyEmail, UserRepository>();
 
-//logica controller Auth
+// Lógica Auth
 builder.Services.AddScoped<IJwtService, JwtService>();
 builder.Services.AddScoped<IAuthCadastro, AuthService>();
 builder.Services.AddScoped<IAuthLogin, AuthService>();
 
+// Repositórios (building)
+builder.Services.AddScoped<ICreateBuilding, BuildingRepository>();
+builder.Services.AddScoped<IDeleteBuilding, BuildingRepository>();
+builder.Services.AddScoped<IPatchMoradores, BuildingRepository>();
+builder.Services.AddScoped<IGetById, BuildingRepository>();
 
+// Services (building)
+builder.Services.AddScoped<ItransformeFileEmBytes, TransformeFileEmBytes>();
+builder.Services.AddScoped<IBuildCreate, BuildingService>(); 
+builder.Services.AddScoped<BuildingService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
