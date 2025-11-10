@@ -14,8 +14,12 @@ namespace Backend.Data
         }
 
         public DbSet<Usuario> Usuarios { get; set; }
-
         public DbSet<Building> Building { get; set; }
+        public DbSet<Contratos> Contratos { get; set; }
+        public DbSet<Atraso> Atrasos { get; set; }
+        public DbSet<Financeiro> Financeiro { get; set; }
+        public DbSet<RegistroFinanceiro> RegistroFinanceiro { get; set; }
+        public DbSet<ContratoResumo> ContratoResumo { get; set; }
 
     }
 }

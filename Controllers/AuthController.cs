@@ -47,7 +47,7 @@ namespace Backend.Controllers
             Usuario user = repository.GetbyEmail(usuario.Email);
 
             string jwt = jwtService.GenerateToken(user);
-            return Ok(jwt);
+            return Ok(user.Id);
         }
     }
 }

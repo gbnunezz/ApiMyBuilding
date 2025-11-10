@@ -27,9 +27,8 @@ namespace Backend.Repository
             {
                 return false;
             }
-            byte[] foto = _transfomeByte.Convert(build.Foto);
             Building building = new Building(
-                foto, build.Nome, build.Descricao
+                build.Nome, build.Descricao, build.IdDono
             );
 
             try

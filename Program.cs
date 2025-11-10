@@ -35,6 +35,9 @@ builder.Services.AddScoped<IExisteUsuario, ExisteUsuario>();
 // Repositórios (usuário)
 builder.Services.AddScoped<ICreateUser, UserRepository>();
 builder.Services.AddScoped<IGetbyEmail, UserRepository>();
+builder.Services.AddScoped<UserRepository>();
+
+
 
 // Lógica Auth
 builder.Services.AddScoped<IJwtService, JwtService>();
